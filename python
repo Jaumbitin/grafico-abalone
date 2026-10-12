@@ -1,0 +1,25 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 1. Carregar o arquivo CSV
+df = pd.read_csv('abalone.csv')
+
+# 2. Criar um gráfico de barras mostrando o comprimento médio por sexo
+plt.figure(figsize=(7, 5))
+
+# Calcular a média do comprimento (Length) agrupado por sexo (Sex)
+media_comprimento = df.groupby('Sex')['Length'].mean()
+
+# Gerar o gráfico de barras
+media_comprimento.plot(kind='bar', color=['#e74c3c', '#3498db', '#2ecc71'])
+
+# Personalizar o gráfico
+plt.title('Comprimento Médio dos Abalones por Sexo', fontsize=12, fontweight='bold')
+plt.xlabel('Sexo (F = Fêmea, I = Infantil, M = Macho)')
+plt.ylabel('Comprimento Médio')
+plt.xticks(rotation=0)
+plt.tight_layout()
+
+# Salvar e fechar
+plt.savefig('grafico_abalone_simples.png', dpi=150)
+plt.close()
